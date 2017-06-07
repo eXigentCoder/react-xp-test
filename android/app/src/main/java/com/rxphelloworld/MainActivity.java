@@ -1,4 +1,4 @@
-package com.rxptodolist;
+package com.rxphelloworld;
 
 import com.facebook.react.ReactActivity;
 
