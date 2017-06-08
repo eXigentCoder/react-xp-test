@@ -3,11 +3,6 @@
  * This file demonstrates a basic ReactXP app.
  */
 import React from 'react';
-var __extends = (this && this.__extends) || function (d, b) {
-        for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
 var RX = require('reactxp');
 var styles = {
     scroll: RX.Styles.createScrollViewStyle({
@@ -51,98 +46,60 @@ var styles = {
     })
 };
 
-var MainPanel = (function (_super) {
-    __extends(MainPanel, _super);
-    function MainPanel() {
-        var _this = _super.call(this) || this;
-        _this._onPressNavigate = function () {
-            _this.props.onPressNavigate();
-        };
-        _this._translationValue = new RX.Animated.Value(-100);
-        _this._animatedStyle = RX.Styles.createAnimatedTextStyle({
+class MainPanel extends RX.Component{
+    constructor() {
+        super();
+
+        this._translationValue = new RX.Animated.Value(-100);
+        this._animatedStyle = RX.Styles.createAnimatedTextStyle({
             transform: [
                 {
-                    translateY: _this._translationValue
+                    translateY: this._translationValue
                 }
             ]
         });
-        return _this;
     }
-    MainPanel.prototype.componentDidMount = function () {
-        var animation = RX.Animated.timing(this._translationValue, {
-            toValue: 0,
-            easing: RX.Animated.Easing.OutBack(),
-            duration: 500
-        });
-        animation.start();
-    };
-    MainPanel.prototype.render = function () {
-        return (RX.createElement(RX.ScrollView, { style: styles.scroll },
-            RX.createElement(RX.View, { style: styles.container },
-                RX.createElement(RX.Animated.Text, { style: [styles.helloWorld, this._animatedStyle] }, "Hello World"),
-                RX.createElement(RX.Text, { style: styles.welcome }, "Welcome to ReactXP"),
-                RX.createElement(RX.Text, { style: styles.instructions }, "Edit App.tsx to get started"),
-                RX.createElement(RX.Link, { style: styles.docLink, url: 'https://microsoft.github.io/reactxp/docs' }, "View ReactXP documentation"),
-                RX.createElement(RX.Button, { style: styles.roundButton, onPress: this._onPressNavigate },
-                    RX.createElement(RX.Text, { style: styles.buttonText }, "See More Examples")))));
-    };
-    return MainPanel;
-}(RX.Component));
 
-// class MainPanel extends RX.Component{
-//     constructor() {
-//         super();
-//
-//         this._translationValue = new RX.Animated.Value(-100);
-//         this._animatedStyle = RX.Styles.createAnimatedTextStyle({
-//             transform: [
-//                 {
-//                     translateY: this._translationValue
-//                 }
-//             ]
-//         });
-//     }
-//
-//     componentDidMount() {
-//         let animation = RX.Animated.timing(this._translationValue, {
-//                 toValue: 0,
-//                 easing: RX.Animated.Easing.OutBack(),
-//                 duration: 500
-//             }
-//         );
-//
-//         animation.start();
-//     }
-//
-//     render() {
-//         return (
-//             <RX.ScrollView style={ styles.scroll }>
-//                 <RX.View style={ styles.container }>
-//                     <RX.Animated.Text style={ [styles.helloWorld, this._animatedStyle] }>
-//                         Hello World
-//                     </RX.Animated.Text>
-//                     <RX.Text style={ styles.welcome }>
-//                         Welcome to ReactXP
-//                     </RX.Text>
-//                     <RX.Text style={ styles.instructions }>
-//                         Edit App.tsx to get started
-//                     </RX.Text>
-//                     <RX.Link style={ styles.docLink } url={ 'https://microsoft.github.io/reactxp/docs' }>
-//                         View ReactXP documentation
-//                     </RX.Link>
-//
-//                     <RX.Button style={ styles.roundButton } onPress={ this._onPressNavigate }>
-//                         <RX.Text style={ styles.buttonText }>
-//                             See More Examples
-//                         </RX.Text>
-//                     </RX.Button>
-//                 </RX.View>
-//             </RX.ScrollView>
-//         );
-//     }
-//
-//     private _onPressNavigate = () => {
-//         this.props.onPressNavigate();
-//     }
-// }
+    componentDidMount() {
+        let animation = RX.Animated.timing(this._translationValue, {
+                toValue: 0,
+                easing: RX.Animated.Easing.OutBack(),
+                duration: 500
+            }
+        );
+
+        animation.start();
+    }
+
+    render() {
+        return (
+            <RX.ScrollView style={ styles.scroll }>
+                <RX.View style={ styles.container }>
+                    <RX.Animated.Text style={ [styles.helloWorld, this._animatedStyle] }>
+                        Hello World
+                    </RX.Animated.Text>
+                    <RX.Text style={ styles.welcome }>
+                        Welcome to ReactXP
+                    </RX.Text>
+                    <RX.Text style={ styles.instructions }>
+                        Edit App.tsx to get started
+                    </RX.Text>
+                    <RX.Link style={ styles.docLink } url={ 'https://microsoft.github.io/reactxp/docs' }>
+                        View ReactXP documentation
+                    </RX.Link>
+
+                    <RX.Button style={ styles.roundButton } onPress={ this._onPressNavigate }>
+                        <RX.Text style={ styles.buttonText }>
+                            See More Examples
+                        </RX.Text>
+                    </RX.Button>
+                </RX.View>
+            </RX.ScrollView>
+        );
+    }
+
+    _onPressNavigate () {
+        this.props.onPressNavigate();
+    }
+}
 module.exports = MainPanel;
