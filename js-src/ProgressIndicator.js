@@ -1,5 +1,4 @@
 "use strict";
-//--------------------------------------------------- [Start ProgressIndicator.tsx]
 /**
  * ProgressIndicator.tsx
  * Copyright: Microsoft 2017
