@@ -46,7 +46,7 @@ var styles = {
     })
 };
 
-class MainPanel extends RX.Component{
+export default class MainPanel extends RX.Component{
     constructor(props) {
         super(props);
         this._onPressNavigate = this._onPressNavigate.bind(this);
@@ -102,4 +102,3 @@ class MainPanel extends RX.Component{
         this.props.onPressNavigate();
     }
 }
-module.exports = MainPanel;
