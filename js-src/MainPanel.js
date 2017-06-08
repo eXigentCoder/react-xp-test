@@ -3,8 +3,9 @@
  * This file demonstrates a basic ReactXP app.
  */
 import React from 'react';
-var RX = require('reactxp');
-var styles = {
+import RX from 'reactxp';
+
+const styles = {
     scroll: RX.Styles.createScrollViewStyle({
         alignSelf: 'stretch',
         backgroundColor: '#f5fcff'

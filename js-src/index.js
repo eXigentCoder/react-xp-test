@@ -1,8 +1,9 @@
 "use strict";
 
 //--------------------------------------------------- [Start index.tsx]
-var RX = require('reactxp');
-var App = require('./App');
+import React from 'react';
+import RX from 'reactxp';
+import App from './App';
 RX.App.initialize(true, true);
-RX.UserInterface.setMainView(RX.createElement(App, null));
+RX.UserInterface.setMainView(<App />);
 //--------------------------------------------------- [End index.tsx] 

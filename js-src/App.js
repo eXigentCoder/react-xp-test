@@ -1,67 +1,78 @@
 "use strict";
-//--------------------------------------------------- [Start app.tsx]
 /*
  * This file demonstrates a basic ReactXP app.
  */
-
-var __extends = (this && this.__extends) || function (d, b) {
-        for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-var RX = require('reactxp');
+import React from 'react';
+import RX from 'reactxp';
 import MainPanel from './MainPanel';
 import SecondPanel from './SecondPanel';
-var NavigationRouteId;
-(function (NavigationRouteId) {
-    NavigationRouteId[NavigationRouteId["MainPanel"] = 0] = "MainPanel";
-    NavigationRouteId[NavigationRouteId["SecondPanel"] = 1] = "SecondPanel";
-})(NavigationRouteId || (NavigationRouteId = {}));
-var styles = {
+
+let NavigationRouteId = {
+    MainPanel: "MainPanel",
+    SecondPanel: "SecondPanel"
+};
+
+const styles = {
     navCardStyle: RX.Styles.createViewStyle({
         backgroundColor: '#f5fcff'
     })
 };
-var App = (function (_super) {
-    __extends(App, _super);
-    function App() {
-        var _this = _super !== null && _super.apply(this, arguments) || this;
-        _this._onNavigatorRef = function (navigator) {
-            _this._navigator = navigator;
-        };
-        _this._renderScene = function (navigatorRoute) {
-            switch (navigatorRoute.routeId) {
-                case NavigationRouteId.MainPanel:
-                    return RX.createElement(MainPanel, { onPressNavigate: _this._onPressNavigate });
-                case NavigationRouteId.SecondPanel:
-                    return RX.createElement(SecondPanel, { onNavigateBack: _this._onPressBack });
-            }
-            return null;
-        };
-        _this._onPressNavigate = function () {
-            _this._navigator.push({
-                routeId: NavigationRouteId.SecondPanel,
-                sceneConfigType: RX.Types.NavigatorSceneConfigType.FloatFromRight,
-                customSceneConfig: {
-                    hideShadow: true
-                }
-            });
-        };
-        _this._onPressBack = function () {
-            _this._navigator.pop();
-        };
-        return _this;
+
+export default class App extends RX.Component {
+    _navigator;
+
+    constructor(props){
+        super(props);
+        this._onNavigatorRef = this._onNavigatorRef.bind(this);
+        this._renderScene = this._renderScene.bind(this);
+        this._onPressNavigate = this._onPressNavigate.bind(this);
+        this._onPressBack = this._onPressBack.bind(this);
     }
-    App.prototype.componentDidMount = function () {
+
+    componentDidMount(){
         this._navigator.immediatelyResetRouteStack([{
             routeId: NavigationRouteId.MainPanel,
             sceneConfigType: RX.Types.NavigatorSceneConfigType.Fade
         }]);
-    };
-    App.prototype.render = function () {
-        return (RX.createElement(RX.Navigator, { ref: this._onNavigatorRef, renderScene: this._renderScene, cardStyle: styles.navCardStyle }));
-    };
-    return App;
-}(RX.Component));
-module.exports = App;
-//--------------------------------------------------- [End app.tsx] 
+    }
+
+    render(){
+        return (
+            <RX.Navigator
+                ref={ this._onNavigatorRef }
+                renderScene={ this._renderScene }
+                cardStyle={ styles.navCardStyle }
+            />
+        );
+    }
+
+    _onNavigatorRef(navigator){
+        this._navigator = navigator;
+    }
+
+    _renderScene(navigatorRoute){
+        switch (navigatorRoute.routeId) {
+            case NavigationRouteId.MainPanel:
+                return <MainPanel onPressNavigate={ this._onPressNavigate }/>;
+
+            case NavigationRouteId.SecondPanel:
+                return <SecondPanel onNavigateBack={ this._onPressBack }/>;
+        }
+
+        return null;
+    }
+
+    _onPressNavigate(){
+        this._navigator.push({
+            routeId: NavigationRouteId.SecondPanel,
+            sceneConfigType: RX.Types.NavigatorSceneConfigType.FloatFromRight,
+            customSceneConfig: {
+                hideShadow: true
+            }
+        });
+    }
+
+    _onPressBack(){
+        this._navigator.pop();
+    }
+};

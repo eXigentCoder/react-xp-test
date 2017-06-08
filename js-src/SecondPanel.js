@@ -1,15 +1,14 @@
 "use strict";
-//--------------------------------------------------- [Start SecondPanel.tsx]
 /*
  * This file demonstrates a basic ReactXP app.
  */
 import React from 'react';
-var RX = require('reactxp');
+import RX from 'reactxp';
 import {default as RXVideo} from 'reactxp-video';
 import ProgressIndicator from './ProgressIndicator';
 import ToggleSwitch from './ToggleSwitch';
 
-var styles = {
+const styles = {
     scroll: RX.Styles.createScrollViewStyle({
         alignSelf: 'stretch',
         backgroundColor: '#f5fcff'
@@ -144,4 +143,3 @@ export default class SecondPanel extends RX.Component {
         this.setState({toggleValue: newValue});
     }
 }
-//--------------------------------------------------- [End SecondPanel.tsx]
