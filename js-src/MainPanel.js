@@ -49,7 +49,6 @@ var styles = {
 export default class MainPanel extends RX.Component{
     constructor(props) {
         super(props);
-        this._onPressNavigate = this._onPressNavigate.bind(this);
         this._translationValue = new RX.Animated.Value(-100);
         this._animatedStyle = RX.Styles.createAnimatedTextStyle({
             transform: [
@@ -88,7 +87,7 @@ export default class MainPanel extends RX.Component{
                         View ReactXP documentation
                     </RX.Link>
 
-                    <RX.Button style={ styles.roundButton } onPress={ this._onPressNavigate }>
+                    <RX.Button style={ styles.roundButton } onPress={ this.props.onPressNavigate }>
                         <RX.Text style={ styles.buttonText }>
                             See More Examples
                         </RX.Text>
@@ -96,9 +95,5 @@ export default class MainPanel extends RX.Component{
                 </RX.View>
             </RX.ScrollView>
         );
-    }
-
-    _onPressNavigate () {
-        this.props.onPressNavigate();
     }
 }
