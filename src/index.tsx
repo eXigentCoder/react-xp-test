@@ -1,5 +1,5 @@
 //--------------------------------------------------- [Start index.tsx]
- import RX = require('reactxp');
+import RX = require('reactxp');
 import App = require('./App');
 
 RX.App.initialize(true, true);
