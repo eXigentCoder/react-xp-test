@@ -55,6 +55,7 @@ export default class SecondPanel extends RX.Component {
     constructor(props){
         super(props);
         this._playVideo = this._playVideo.bind(this);
+        this._onChangeToggle = this._onChangeToggle.bind(this);
         this.state = {
             toggleValue: true,
             progressValue: 0
