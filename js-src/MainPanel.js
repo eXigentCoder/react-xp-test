@@ -47,9 +47,9 @@ var styles = {
 };
 
 class MainPanel extends RX.Component{
-    constructor() {
-        super();
-
+    constructor(props) {
+        super(props);
+        this._onPressNavigate = this._onPressNavigate.bind(this);
         this._translationValue = new RX.Animated.Value(-100);
         this._animatedStyle = RX.Styles.createAnimatedTextStyle({
             transform: [
