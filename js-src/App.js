@@ -11,7 +11,7 @@ var __extends = (this && this.__extends) || function (d, b) {
     };
 var RX = require('reactxp');
 import MainPanel from './MainPanel';
-var SecondPanel = require('./SecondPanel');
+import SecondPanel from './SecondPanel';
 var NavigationRouteId;
 (function (NavigationRouteId) {
     NavigationRouteId[NavigationRouteId["MainPanel"] = 0] = "MainPanel";
