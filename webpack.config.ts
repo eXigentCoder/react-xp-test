@@ -1,7 +1,7 @@
 import * as webpack from 'webpack';
 
 const config: webpack.Configuration = {
-    entry: "./src/index.js",
+    entry: "./src/index.tsx",
     output: {
         filename: "bundle.js",
         path: __dirname + "/dist"
